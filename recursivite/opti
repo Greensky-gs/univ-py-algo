@@ -1,0 +1,27 @@
+def f(liste, somme=[0], elements=[0]):
+    if len(liste) == 0:
+        return 0
+    else:
+        somme[0] += liste[0]
+        elements[0] += 1
+        print(f"somme[0] = {somme[0]}  elements[0] = {elements[0]}   moyenne = ({somme[0]/elements[0]})")
+        return f(liste[1:], somme, elements) + (liste[0] > (somme[0]/elements[0])) # C'est fonctionnel car la récursivité se fait avant la comparaison
+def moy(l):
+    s = 0
+    i = 0
+    while i < len(l):
+        s+=l[i]
+        i+=1
+    return s/len(l)
+def expect(l):
+    m = moy(l)
+    c = 0
+    i = 0
+    while i < len(l):
+        if l[i] > m:
+            c+=1
+        i+=1
+    return c
+tab = [2.2, 3.1415, -6, 5, 2.4, -5.345, -603.53, -3.141592653589793238462643, 1, 0, 0, 7]
+print(f"moy = {moy(tab)}   expect {expect(tab)}")
+print(f(tab))
